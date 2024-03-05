@@ -63,7 +63,7 @@ app.get('/characters', async (req, res) => {
     } catch (err) {
         console.error(err.message)
     }
-})
+});
 
 // read one
 app.get('/characters/:id', async (req, res) => {
@@ -77,7 +77,7 @@ app.get('/characters/:id', async (req, res) => {
     } catch (err) {
         console.error(err.message)
     }
-})
+});
 
 // update
 app.put('/characters/:id', async (req, res) => {
@@ -122,8 +122,23 @@ app.put('/characters/:id', async (req, res) => {
     } catch (err) {
         console.error(err.message)
     }
-})
+});
 
+// delete
+app.delete('/characters/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const deleteCharacter = await pool.query(
+            'DELETE FROM character WHERE character_id = $1',
+            [id]
+        );
+        res.status(200).json(`Character with id = ${id} was deleted.`)
+    } catch (err) {
+        console.error(err.message)
+    }
+});
+
+// ********** start server **********
 app.listen(5000, () => {
     console.log('Disney API Server has started on port 5000.')
 });
