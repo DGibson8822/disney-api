@@ -1,0 +1,16 @@
+{
+  "name": "disney-api",
+  "version": "1.0.0",
+  "description": "A simple NodeJS/Express API that facilitates CRUD operations between a React front-end and a Postgres database.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Dominique Gibson",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "pg": "^8.11.3"
+  }
+}
