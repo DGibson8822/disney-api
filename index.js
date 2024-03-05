@@ -14,6 +14,7 @@ app.use(express.json())
 app.post('/characters', async (req, res) => {
     try {
         const { 
+            character_name,
             character_description,
             character_type,
             avatar_style,
@@ -29,8 +30,10 @@ app.post('/characters', async (req, res) => {
             skin_color
         } = req.body;
         const newCharacter = await pool.query(
-            'INSERT INTO character (character_description, character_type, avatar_style, top_type, accessories_type, hair_color, facial_hair_type, clothe_type, clothe_color, eye_type, eyebrow_type, mouth_type, skin_color) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13) RETURNING *',
-            [character_description,
+            'INSERT INTO character (character_name, character_description, character_type, avatar_style, top_type, accessories_type, hair_color, facial_hair_type, clothe_type, clothe_color, eye_type, eyebrow_type, mouth_type, skin_color) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11, $12, $13, $14) RETURNING *',
+            [
+                character_name,
+                character_description,
                 character_type,
                 avatar_style,
                 top_type,
@@ -81,6 +84,7 @@ app.put('/characters/:id', async (req, res) => {
     try {
         const { id } = req.params;
         const { 
+            character_name,
             character_description,
             character_type,
             avatar_style,
@@ -96,8 +100,10 @@ app.put('/characters/:id', async (req, res) => {
             skin_color
         } = req.body;
         const updateCharacter = await pool.query(
-            'UPDATE character SET character_description = $1, character_type = $2, avatar_style = $3, top_type = $4, accessories_type = $5, hair_color = $6, facial_hair_type = $7, clothe_type = $8, clothe_color = $9, eye_type = $10, eyebrow_type = $11, mouth_type = $12, skin_color = $13 WHERE character_id = $14',
-            [character_description,
+            'UPDATE character SET character_name = $1, character_description = $2, character_type = $3, avatar_style = $4, top_type = $5, accessories_type = $6, hair_color = $7, facial_hair_type = $8, clothe_type = $9, clothe_color = $10, eye_type = $11, eyebrow_type = $12, mouth_type = $13, skin_color = $14 WHERE character_id = $15',
+            [
+                character_name,
+                character_description,
                 character_type,
                 avatar_style,
                 top_type,

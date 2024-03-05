@@ -2,6 +2,7 @@ CREATE DATABASE disney;
 
 CREATE TABLE character( 
     character_id SERIAL PRIMARY KEY,
+    character_name VARCHAR(50),
     character_description VARCHAR(255),
     character_type VARCHAR(50),
     avatar_style VARCHAR(50),
