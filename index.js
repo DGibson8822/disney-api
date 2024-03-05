@@ -10,7 +10,8 @@ app.use(express.json())
 
 // ********** routes **********
 
-app.post('/character', async (req, res) => {
+// create
+app.post('/characters', async (req, res) => {
     try {
         const { 
             character_description,
@@ -47,8 +48,33 @@ app.post('/character', async (req, res) => {
     } catch (err) {
         console.error(err.message)
     }
+});
+
+// read all
+app.get('/characters', async (req, res) => {
+    try {
+        const allCharacters = await pool.query(
+            'SELECT * FROM character'
+        );
+        res.status(200).json(allCharacters.rows)
+    } catch (err) {
+        console.error(err.message)
+    }
 })
 
+// read one
+app.get('/characters/:id', async (req, res) => {
+    try {
+        const { id } = req.params;
+        const character = await pool.query(
+            'SELECT * FROM character WHERE character_id = $1',
+            [id]
+        );
+        res.status(200).json(character.rows[0])
+    } catch (err) {
+        console.error(err.message)
+    }
+})
 
 app.listen(5000, () => {
     console.log('Disney API Server has started on port 5000.')
