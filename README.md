@@ -1,2 +1,2 @@
 # disney-api
-A simple NodeJS/Express API that facilitates CRUD operations between a React front-end and a Postgres database.
+A simple NodeJS/Express API that facilitates CRUD operations between a React front-end (here: https://github.com/DGibson8822/disney-react) and a Postgres database. It's a work-in-progress that was quickly thrown together the day of my interview for the purpose of demonstrating familiarity with the technology, and is not meant for production. (no security, no linting, harcoded database config, ports, etc.).
